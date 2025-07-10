@@ -72,8 +72,10 @@ export default function Rethink() {
   }, [rethinkHeaderRef]);
 
   useGSAP(() => {
+    const listWidth = rethinkContentListRef.current?.offsetWidth ?? 0;
+    const wrapperWidth = rethinkContentWrapperRef.current?.offsetWidth ?? 0;
     gsap.to(".rethink-content-item", {
-      x: `${-rethinkContentListRef.current?.offsetWidth + rethinkContentWrapperRef.current?.offsetWidth}`,
+      x: `${-listWidth + wrapperWidth}`,
       ease: "none",
       scrollTrigger: {
         trigger: rethinkContentWrapperRef.current,
@@ -99,7 +101,7 @@ export default function Rethink() {
             {rethinkContent.map((item, index) => (
               <li
                 key={index}
-                className="rethink-content-item aspect-square w-full md:w-[50dvh] border border-white relative grid grid-rows-[1fr_auto] md:first:ml-[50vw]"
+                className="rethink-content-item aspect-square w-full xs:w-[50dvh] border border-white relative grid grid-rows-[1fr_auto] md:first:ml-[50vw]"
               >
                 <span className="rethink-content-item-number absolute top-4 left-4 notable color-primary text-5xl ">{item.number}</span>
                 <p className="rethink-content-item-text font-black text-xl row-2 pb-4 px-4">{item.title}</p>

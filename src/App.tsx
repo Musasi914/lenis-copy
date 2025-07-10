@@ -4,6 +4,7 @@ import Rethink from "./components/Rethink";
 import { ReactLenis } from "lenis/react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import Jumbotron from "./components/Jumbotron";
 
 export default function App() {
   console.log("App");
@@ -29,6 +30,7 @@ export default function App() {
           <Hero />
           <Why />
           <Rethink />
+          <Jumbotron />
           <div className="h-screen"></div>
         </div>
       </div>
