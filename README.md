@@ -3,6 +3,17 @@
 Lenis 様のサイトを見たときから、Gsap の練習にぴったりだと思っていたので、アニメーションの練習に使っています。<br />
 参考：https://lenis.darkroom.engineering/
 
+# 使用技術
+
+- React
+- GSAP
+- Lenis
+- Tailwind CSS
+- TypeScript
+
+- shadcn/ui(tweakcn)
+- Intersection Observer
+
 # 📝 メモ
 
 - useSmoother は overflow:hidden を使うので、lenis の方が良いかもしれない
