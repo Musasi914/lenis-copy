@@ -57,14 +57,24 @@ export default function Jumbotron() {
         ".jumbotron-bigger-text",
         {
           scale: 0,
-          opacity: 0.4,
         },
         {
           scale: 10,
-          opacity: 1,
           duration: 5,
+          ease: "power1.in",
         },
-        1.0
+        0.5
+      )
+      .fromTo(
+        ".jumbotron-bigger-text",
+        {
+          opacity: 0.4,
+        },
+        {
+          opacity: 1,
+          duration: 3,
+        },
+        0.5
       )
       .set(
         ".jumbotron-bigger-text",
@@ -85,7 +95,7 @@ export default function Jumbotron() {
 
   return (
     <section ref={jumbotronRef} className="jumbotron">
-      <div className="jumbotron-inner relative h-[1000vh]">
+      <div className="jumbotron-inner relative h-[1000vh] contain-paint">
         <div className="jumbotron-content sticky top-0 h-screen w-full">
           <div className="jumbotron-title w-full h-full relative">
             <h2 className="h-full w-full px-10 py-10 font-black text-[7vw] notable flex flex-col justify-between">
@@ -95,7 +105,7 @@ export default function Jumbotron() {
               <span className="jumbotron-title-bottom self-end">as it should be</span>
             </h2>
             <div
-              className="jumbotron-bigger-text text-center text-[20vw] text-white font-black notable absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform-[scale(6)] origin-[47.5%_30%] pointer-events-none"
+              className="jumbotron-bigger-text text-center text-[20vw] text-white font-black notable abs-center transform-[scale(6)] origin-[47.5%_30%] pointer-events-none"
               aria-hidden="true"
             >
               ENTER <br />

@@ -5,11 +5,11 @@ import { ReactLenis } from "lenis/react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import Jumbotron from "./components/Jumbotron";
+import Feature from "./components/Feature";
 
 export default function App() {
   console.log("App");
   const lenisRef = useRef(null);
-
   useEffect(() => {
     function update(time: number) {
       // lenisRef.current の型を明示し、lenis プロパティへのアクセスを安全にする
@@ -19,6 +19,34 @@ export default function App() {
     gsap.ticker.add(update);
     return () => gsap.ticker.remove(update);
   }, []);
+
+  const featureRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    console.log("!ni");
+    if (!featureRef.current) return;
+    console.log(featureRef.current);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        console.log(entry);
+        if (entry.isIntersecting) {
+          // Featureセクションが画面に表示されたらdarkクラスを削除
+          document.documentElement.classList.remove("dark");
+        } else {
+          // Featureセクションが画面から外れたらdarkクラスを追加
+          document.documentElement.classList.add("dark");
+        }
+      });
+    });
+
+    observer.observe(featureRef.current);
+
+    return () => {
+      if (featureRef.current) {
+        observer.unobserve(featureRef.current);
+      }
+    };
+  }, [featureRef]);
 
   return (
     <>
@@ -31,7 +59,7 @@ export default function App() {
           <Why />
           <Rethink />
           <Jumbotron />
-          <div className="h-screen"></div>
+          <Feature ref={featureRef} />
         </div>
       </div>
     </>

@@ -1,3 +1,4 @@
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
@@ -33,6 +34,8 @@ export default function Rethink() {
   const rethinkContentWrapperRef = useRef<HTMLDivElement>(null);
   const rethinkContentListRef = useRef<HTMLOListElement>(null);
 
+  const isMobile = useIsMobile();
+
   useEffect(() => {
     if (rethinkContentListRef.current) {
       const width = rethinkContentListRef.current.offsetWidth;
@@ -43,6 +46,7 @@ export default function Rethink() {
   }, [rethinkContentListRef]);
 
   useGSAP(() => {
+    if (isMobile) return;
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: rethinkHeaderRef.current,
@@ -86,13 +90,29 @@ export default function Rethink() {
     });
   }, [rethinkContentWrapperRef]);
 
+  // テキストアニメーションのGSAP
+  useGSAP(() => {
+    gsap.from(".rethink-title", {
+      yPercent: 100,
+      clipPath: "inset(0 0 100% 0)",
+      duration: 1,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: ".rethink-title",
+        start: "top 90%",
+      },
+    });
+  }, [rethinkHeaderRef]);
+
   return (
     <section ref={rethinkRef} className="rethink py-20">
       <div ref={rethinkHeaderRef} className="rethink-header container grid grid-cols-12 gap-8 md:gap-0 md:mt-50 md:items-end mb-40">
-        <h2 className="rethink-title font-black text-[4vw] border-l-4 border-primary pl-4 notable col-span-full pb-20 md:col-[3/6] w-full md:self-start">
+        <h2 className="rethink-title font-black text-[4vw] border-l-4 border-primary pl-4 notable col-span-full pb-2 md:pb-20 md:col-[2/7] w-full md:self-start">
           Rethinking smooth scroll
         </h2>
-        <p className="rethink-subtitle md:col-[8/11]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+        <p className="rethink-subtitle col-span-full md:col-[8/11]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+        </p>
       </div>
 
       <div className="rethink-content contain-paint">

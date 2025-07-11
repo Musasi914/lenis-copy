@@ -12,6 +12,7 @@ export default function Why() {
   const whyRef = useRef<HTMLDivElement>(null);
   const whyTitleRef = useRef<HTMLHeadingElement>(null);
 
+  // タイトル固定のためのGSAP
   useGSAP(() => {
     // モバイルの場合はGSAPを使わない
     if (isMobile) return;
@@ -26,12 +27,26 @@ export default function Why() {
     });
   }, [whyRef, isMobile]);
 
+  // テキストアニメーションのGSAP
+  useGSAP(() => {
+    gsap.from(".why-title", {
+      yPercent: 100,
+      clipPath: "inset(0 0 100% 0)",
+      duration: 1,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: ".why-title",
+        start: "top 90%",
+      },
+    });
+  }, [whyRef]);
+
   return (
     <section ref={whyRef} className="why py-20">
       <div className="container grid grid-cols-12 gap-8 md:gap-0 md:mt-50">
         <h2
           ref={whyTitleRef}
-          className="why-title font-black text-[5vw] border-l-4 border-primary pl-4 notable col-span-full pb-2 md:col-[3/6] w-full md:self-start"
+          className="why-title font-black text-[5vw] border-l-4 border-primary pl-4 notable col-span-full pb-2 md:col-[2/8] w-full md:self-start"
         >
           Why Smooth Scroll?
         </h2>
