@@ -6,9 +6,9 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import Jumbotron from "./components/Jumbotron";
 import Feature from "./components/Feature";
+import { SkipLink } from "./components/SkipLink";
 
 export default function App() {
-  console.log("App");
   const lenisRef = useRef(null);
   useEffect(() => {
     function update(time: number) {
@@ -20,15 +20,13 @@ export default function App() {
     return () => gsap.ticker.remove(update);
   }, []);
 
+  // Feature前後でダークモードの切り替え
   const featureRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    console.log("!ni");
     if (!featureRef.current) return;
-    console.log(featureRef.current);
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        console.log(entry);
         if (entry.isIntersecting) {
           // Featureセクションが画面に表示されたらdarkクラスを削除
           document.documentElement.classList.remove("dark");
@@ -50,17 +48,18 @@ export default function App() {
 
   return (
     <>
+      <SkipLink />
       <ReactLenis root ref={lenisRef} />
       <div className="scrollbar"></div>
       <div id="smooth-wrapper">
         <div className="main-background"></div>
-        <div id="smooth-content" className="min-h-screen">
+        <main id="smooth-content" className="min-h-screen">
           <Hero />
           <Why />
           <Rethink />
           <Jumbotron />
           <Feature ref={featureRef} />
-        </div>
+        </main>
       </div>
     </>
   );

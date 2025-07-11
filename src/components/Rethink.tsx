@@ -28,7 +28,6 @@ const rethinkContent = [
 ];
 
 export default function Rethink() {
-  console.log("Rethink");
   const rethinkRef = useRef<HTMLDivElement>(null);
   const rethinkHeaderRef = useRef<HTMLDivElement>(null);
   const rethinkContentWrapperRef = useRef<HTMLDivElement>(null);
@@ -105,10 +104,13 @@ export default function Rethink() {
   }, [rethinkHeaderRef]);
 
   return (
-    <section ref={rethinkRef} className="rethink py-20">
+    <section ref={rethinkRef} className="rethink py-20" aria-labelledby="rethink-title">
       <div ref={rethinkHeaderRef} className="rethink-header container grid grid-cols-12 gap-8 md:gap-0 md:mt-50 md:items-end mb-40">
-        <h2 className="rethink-title font-black text-[4vw] border-l-4 border-primary pl-4 notable col-span-full pb-2 md:pb-20 md:col-[2/7] w-full md:self-start">
-          Rethinking smooth scroll
+        <h2
+          id="rethink-title"
+          className="rethink-title font-black text-[4vw] border-l-4 border-primary pl-4 notable col-span-full pb-2 md:pb-20 md:col-[2/7] w-full md:self-start"
+        >
+          Rethinking lorem ipsum
         </h2>
         <p className="rethink-subtitle col-span-full md:col-[8/11]">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.

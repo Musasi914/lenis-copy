@@ -7,7 +7,6 @@ import { useIsMobile } from "../hooks/useIsMobile";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Why() {
-  console.log("Why");
   const isMobile = useIsMobile();
   const whyRef = useRef<HTMLDivElement>(null);
   const whyTitleRef = useRef<HTMLHeadingElement>(null);
@@ -48,7 +47,7 @@ export default function Why() {
           ref={whyTitleRef}
           className="why-title font-black text-[5vw] border-l-4 border-primary pl-4 notable col-span-full pb-2 md:col-[2/8] w-full md:self-start"
         >
-          Why Smooth Scroll?
+          Why lorem ipsum?
         </h2>
         <div className="why-content col-span-full md:col-[8/12] space-y-20 md:space-y-50">
           <div className="why-content-item">

@@ -100,16 +100,16 @@ export default function Jumbotron() {
           <div className="jumbotron-title w-full h-full relative">
             <h2 className="h-full w-full px-10 py-10 font-black text-[7vw] notable flex flex-col justify-between">
               <span className="jumbotron-title-top">
-                So we build <span className="text-primary">web scrolling</span>
+                So we build <span className="text-primary">lorem ipsum</span>
               </span>
-              <span className="jumbotron-title-bottom self-end">as it should be</span>
+              <span className="jumbotron-title-bottom self-end">dolor sit amet</span>
             </h2>
             <div
               className="jumbotron-bigger-text text-center text-[20vw] text-white font-black notable abs-center transform-[scale(6)] origin-[47.5%_30%] pointer-events-none"
               aria-hidden="true"
             >
               ENTER <br />
-              LENIS
+              lorem
             </div>
             <div
               className="jumbotron-scroll-bg bg-white h-screen w-full absolute top-0 left-0 transform-[scaleX(0)]"

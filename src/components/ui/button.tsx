@@ -37,6 +37,11 @@ function Button({
   variant,
   size,
   asChild = false,
+  "aria-label": ariaLabel,
+  "aria-describedby": ariaDescribedby,
+  "aria-expanded": ariaExpanded,
+  "aria-pressed": ariaPressed,
+  "aria-haspopup": ariaHaspopup,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
@@ -44,7 +49,18 @@ function Button({
   }) {
   const Comp = asChild ? Slot : "button";
 
-  return <Comp data-slot="button" className={cn(buttonVariants({ variant, size, className }))} {...props} />;
+  return (
+    <Comp
+      data-slot="button"
+      className={cn(buttonVariants({ variant, size, className }))}
+      aria-label={ariaLabel}
+      aria-describedby={ariaDescribedby}
+      aria-expanded={ariaExpanded}
+      aria-pressed={ariaPressed}
+      aria-haspopup={ariaHaspopup}
+      {...props}
+    />
+  );
 }
 
 export { Button, buttonVariants };

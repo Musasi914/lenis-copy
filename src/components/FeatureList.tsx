@@ -2,51 +2,11 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useRef } from "react";
+import { featureList } from "../constants/features";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const featureList = [
-  {
-    number: "01",
-    title: "Run scroll in main thread",
-  },
-  {
-    number: "02",
-    title: "Strongly typed",
-  },
-  {
-    number: "03",
-    title: "Smooth scroll with easing",
-  },
-  {
-    number: "04",
-    title: "Scroll snapping",
-  },
-  {
-    number: "05",
-    title: "Scroll progress with Lenis",
-  },
-  {
-    number: "06",
-    title: "Scroll progress with Lenis",
-  },
-  {
-    number: "07",
-    title: "Loop progress with Lenis",
-  },
-  {
-    number: "08",
-    title: "Scroll  with Lenis",
-  },
-  {
-    number: "09",
-    title: "Auto-scrolling with Lenis",
-  },
-];
-
 export default function FeatureList() {
-  console.log("featureList");
-
   const wrapperRef = useRef(null);
 
   useGSAP(() => {
@@ -69,8 +29,15 @@ export default function FeatureList() {
   }, [wrapperRef]);
 
   return (
-    <div ref={wrapperRef} className="feature-list-wrapper h-screen relative grid grid-cols-12 contain-paint">
-      <h2 className="feature-title notable absolute top-0 col-8 text-4xl pt-10">Lenis Features</h2>
+    <div
+      ref={wrapperRef}
+      className="feature-list-wrapper h-screen relative grid grid-cols-12 contain-paint"
+      role="region"
+      aria-labelledby="feature-title"
+    >
+      <h2 id="feature-title" className="feature-title notable absolute top-0 col-8 text-4xl pt-10">
+        lorem ipsum
+      </h2>
       <ol className="feature-list max-h-screen p-10 top-0 col-span-full grid grid-cols-12 grid-rows-12">
         {featureList.map((item) => (
           <li
